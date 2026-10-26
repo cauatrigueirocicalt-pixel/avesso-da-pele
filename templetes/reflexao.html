@@ -1,0 +1,83 @@
+<!-- Utiliza a estrutura de base.html. -->
+{% extends "base.html" %}
+
+
+<!-- Título da aba. -->
+{% block titulo %}
+
+    Reflexão | O Avesso da Pele
+
+{% endblock %}
+
+
+<!-- Início do conteúdo. -->
+{% block conteudo %}
+
+
+<section class="centro">
+
+    <p class="etiqueta">
+        Mensagem do banco de dados
+    </p>
+
+    <h1>
+        Uma reflexão para você
+    </h1>
+
+    <p>
+        O Python escolheu uma das mensagens cadastradas
+        no banco.
+    </p>
+
+
+    <!-- Verifica se existe alguma reflexão. -->
+    {% if reflexao %}
+
+        <!-- Mensagem escolhida pelo Python. -->
+        <blockquote>
+            {{ reflexao.mensagem }}
+        </blockquote>
+
+        <!-- Nome do tema relacionado. -->
+        <p>
+            Tema relacionado:
+
+            <strong>
+                {{ reflexao.tema }}
+            </strong>
+        </p>
+
+
+    <!-- Caso o banco não tenha reflexões. -->
+    {% else %}
+
+        <p>
+            Nenhuma reflexão foi cadastrada.
+        </p>
+
+    {% endif %}
+
+
+    <div class="acoes centralizar-acoes">
+
+        <!-- Recarrega a rota e escolhe outra reflexão. -->
+        <a
+            class="botao"
+            href="{{ url_for('reflexao_aleatoria') }}"
+        >
+            Receber outra reflexão
+        </a>
+
+        <a
+            class="botao secundario"
+            href="{{ url_for('participar') }}"
+        >
+            Participar
+        </a>
+
+    </div>
+
+</section>
+
+
+{% endblock %}
