@@ -1,0 +1,134 @@
+<!-- Utiliza a estrutura geral de base.html. -->
+{% extends "base.html" %}
+
+
+<!-- Define o título da aba usando o nome vindo do banco. -->
+{% block titulo %}
+
+    {{ tema.nome }} | O Avesso da Pele
+
+{% endblock %}
+
+
+<!-- Início do conteúdo específico desta página. -->
+{% block conteudo %}
+
+
+<article class="pagina-tema">
+
+    <!-- Identificação da página. -->
+    <p class="etiqueta">
+        Tema do projeto
+    </p>
+
+
+    <!-- Nome do tema vindo do banco. -->
+    <h1>
+        {{ tema.nome }}
+    </h1>
+
+
+    <!-- Resumo armazenado na tabela tema. -->
+    <p class="subtitulo">
+        {{ tema.resumo }}
+    </p>
+
+
+    <!-- Relação entre o tema e o livro. -->
+    <section>
+
+        <h2>
+            Relação com a obra
+        </h2>
+
+        <p>
+            {{ tema.relacao_obra }}
+        </p>
+
+    </section>
+
+
+    <!-- Relação entre o tema e a informática. -->
+    <section>
+
+        <h2>
+            Relação com a tecnologia
+        </h2>
+
+        <p>
+            {{ tema.relacao_tecnologia }}
+        </p>
+
+    </section>
+
+
+    <!-- Pergunta armazenada no banco. -->
+    <section>
+
+        <h2>
+            Para refletir
+        </h2>
+
+        <p class="pergunta">
+            {{ tema.pergunta }}
+        </p>
+
+    </section>
+
+
+    <!-- Reflexões ligadas ao tema. -->
+    <section>
+
+        <h2>
+            Reflexões relacionadas
+        </h2>
+
+        {% if reflexoes %}
+
+            <ul class="lista-reflexoes">
+
+                <!-- Repete uma linha para cada reflexão. -->
+                {% for reflexao in reflexoes %}
+
+                    <li>
+                        {{ reflexao.mensagem }}
+                    </li>
+
+                {% endfor %}
+
+            </ul>
+
+        {% else %}
+
+            <p>
+                Nenhuma reflexão foi cadastrada para este tema.
+            </p>
+
+        {% endif %}
+
+    </section>
+
+
+    <!-- Links de navegação. -->
+    <div class="acoes">
+
+        <a
+            class="botao"
+            href="{{ url_for('reflexao_aleatoria') }}"
+        >
+            Receber uma reflexão
+        </a>
+
+        <a
+            class="botao secundario"
+            href="{{ url_for('inicio') }}#temas"
+        >
+            Voltar aos temas
+        </a>
+
+    </div>
+
+</article>
+
+
+{% endblock %}
