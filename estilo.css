@@ -1,0 +1,1043 @@
+/* ==========================================================
+   CSS DO PROJETO O AVESSO DA PELE
+   ========================================================== */
+
+
+/* ----------------------------------------------------------
+   1. VARIÁVEIS DE CORES
+   ---------------------------------------------------------- */
+
+/*
+   :root representa a raiz da página.
+
+   As variáveis começam com dois traços.
+   Elas permitem reutilizar as mesmas cores.
+*/
+
+:root {
+    --fundo: #f5f0e8;
+    --superficie: #fffdf8;
+    --texto: #231f20;
+    --texto-suave: #5b5350;
+
+    --principal: #6b2f2f;
+    --principal-escura: #4a1f1f;
+    --principal-clara: #8a4545;
+
+    --destaque: #c58b3a;
+    --destaque-claro: #f2e1c4;
+
+    --borda: #d8cdbd;
+
+    --sucesso: #245c3a;
+    --sucesso-claro: #e2f2e8;
+
+    --erro: #8a2020;
+    --erro-claro: #f8e2e2;
+
+    --sombra: rgba(35, 31, 32, 0.12);
+}
+
+
+/* ----------------------------------------------------------
+   2. CONFIGURAÇÃO GERAL
+   ---------------------------------------------------------- */
+
+/*
+   O asterisco seleciona todos os elementos.
+
+   border-box faz largura e altura incluírem
+   bordas e espaçamentos internos.
+*/
+
+* {
+    box-sizing: border-box;
+}
+
+
+/*
+   Faz os links internos rolarem suavemente.
+*/
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+/*
+   Configuração geral do corpo da página.
+*/
+
+body {
+    margin: 0;
+
+    background-color: var(--fundo);
+    color: var(--texto);
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    line-height: 1.65;
+}
+
+
+/*
+   Deixa imagens responsivas.
+*/
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+
+/*
+   Define a aparência padrão dos links.
+*/
+
+a {
+    color: var(--principal);
+}
+
+
+/*
+   Mostra uma indicação clara quando um elemento
+   recebe foco pelo teclado.
+*/
+
+a:focus,
+button:focus,
+input:focus {
+    outline: 3px solid var(--destaque);
+    outline-offset: 3px;
+}
+
+
+/* ----------------------------------------------------------
+   3. LIMITE DE LARGURA
+   ---------------------------------------------------------- */
+
+/*
+   Impede que o conteúdo ocupe toda a largura
+   de uma tela muito grande.
+
+   min() escolhe o menor valor:
+   1100 pixels ou 92% da tela.
+*/
+
+.limite {
+    width: min(1100px, 92%);
+    margin: 0 auto;
+}
+
+
+/* ----------------------------------------------------------
+   4. CABEÇALHO
+   ---------------------------------------------------------- */
+
+.cabecalho {
+    background-color: var(--principal-escura);
+    color: white;
+
+    padding: 18px 0;
+
+    box-shadow: 0 3px 10px var(--sombra);
+}
+
+
+/*
+   Organiza marca e menu na mesma linha.
+*/
+
+.cabecalho .limite {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 24px;
+}
+
+
+/*
+   Nome do projeto no cabeçalho.
+*/
+
+.marca {
+    color: white;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+
+    text-decoration: none;
+}
+
+
+/*
+   Efeito ao passar o mouse ou utilizar o teclado.
+*/
+
+.marca:hover,
+.marca:focus {
+    color: var(--destaque-claro);
+}
+
+
+/* ----------------------------------------------------------
+   5. MENU DE NAVEGAÇÃO
+   ---------------------------------------------------------- */
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 18px;
+}
+
+
+nav a {
+    color: white;
+
+    font-size: 1rem;
+    font-weight: 600;
+
+    text-decoration: none;
+}
+
+
+nav a:hover,
+nav a:focus {
+    color: var(--destaque-claro);
+    text-decoration: underline;
+}
+
+
+/*
+   O botão do menu fica escondido em telas grandes.
+*/
+
+.botao-menu {
+    display: none;
+
+    border: 2px solid white;
+    background-color: transparent;
+    color: white;
+
+    padding: 8px 14px;
+}
+
+
+/* ----------------------------------------------------------
+   6. CONTEÚDO PRINCIPAL
+   ---------------------------------------------------------- */
+
+main {
+    min-height: 70vh;
+    padding: 48px 0 72px;
+}
+
+
+/*
+   Espaço abaixo das seções.
+*/
+
+section,
+article.pagina-tema {
+    margin-bottom: 56px;
+}
+
+
+/*
+   Melhora a leitura dos parágrafos.
+*/
+
+p {
+    max-width: 850px;
+}
+
+
+/* ----------------------------------------------------------
+   7. TÍTULOS
+   ---------------------------------------------------------- */
+
+h1,
+h2,
+h3 {
+    font-family: Georgia, "Times New Roman", serif;
+    line-height: 1.2;
+
+    color: var(--texto);
+}
+
+
+h1 {
+    margin: 10px 0 18px;
+
+    /*
+       clamp define um tamanho mínimo,
+       um tamanho variável e um máximo.
+    */
+    font-size: clamp(2.2rem, 7vw, 4.6rem);
+}
+
+
+h2 {
+    margin-top: 40px;
+    margin-bottom: 16px;
+
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+}
+
+
+h3 {
+    margin-top: 0;
+
+    font-size: 1.35rem;
+}
+
+
+/* ----------------------------------------------------------
+   8. DESTAQUE DA PÁGINA INICIAL
+   ---------------------------------------------------------- */
+
+.destaque {
+    background-color: var(--superficie);
+
+    border: 1px solid var(--borda);
+    border-left: 8px solid var(--destaque);
+    border-radius: 8px;
+
+    padding: clamp(28px, 5vw, 58px);
+
+    box-shadow: 0 8px 24px var(--sombra);
+}
+
+
+/*
+   Pequeno texto acima dos títulos.
+*/
+
+.etiqueta {
+    color: var(--principal);
+
+    font-size: 0.82rem;
+    font-weight: 700;
+
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+
+/*
+   Texto colocado abaixo do título principal.
+*/
+
+.subtitulo {
+    max-width: 760px;
+
+    color: var(--texto-suave);
+
+    font-size: 1.2rem;
+}
+
+
+/* ----------------------------------------------------------
+   9. ÁREA DE AÇÕES
+   ---------------------------------------------------------- */
+
+.acoes {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 14px;
+
+    margin-top: 28px;
+}
+
+
+/*
+   Centraliza os botões da página de reflexão.
+*/
+
+.centralizar-acoes {
+    justify-content: center;
+}
+
+
+/* ----------------------------------------------------------
+   10. BOTÕES
+   ---------------------------------------------------------- */
+
+.botao,
+button {
+    display: inline-block;
+
+    border: 2px solid var(--principal);
+    border-radius: 6px;
+
+    background-color: var(--principal);
+    color: white;
+
+    cursor: pointer;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+
+    padding: 11px 20px;
+
+    text-align: center;
+    text-decoration: none;
+
+    transition:
+        background-color 0.2s,
+        color 0.2s,
+        transform 0.2s;
+}
+
+
+.botao:hover,
+button:hover {
+    background-color: var(--principal-escura);
+    border-color: var(--principal-escura);
+
+    transform: translateY(-2px);
+}
+
+
+/*
+   Botão secundário com fundo transparente.
+*/
+
+.botao.secundario {
+    background-color: transparent;
+    color: var(--principal);
+}
+
+
+.botao.secundario:hover {
+    background-color: var(--principal);
+    color: white;
+}
+
+
+/* ----------------------------------------------------------
+   11. GRADE DE CARTÕES
+   ---------------------------------------------------------- */
+
+.grade {
+    display: grid;
+
+    /*
+       Cria duas colunas com o mesmo tamanho.
+    */
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 22px;
+}
+
+
+/*
+   Aparência de cada cartão.
+*/
+
+.cartao {
+    background-color: var(--superficie);
+
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+
+    padding: 24px;
+
+    box-shadow: 0 4px 14px var(--sombra);
+
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
+}
+
+
+.cartao:hover {
+    transform: translateY(-4px);
+
+    box-shadow: 0 8px 20px var(--sombra);
+}
+
+
+.cartao a {
+    color: var(--principal);
+
+    font-weight: 700;
+}
+
+
+.cartao a:hover,
+.cartao a:focus {
+    color: var(--principal-escura);
+}
+
+
+/* ----------------------------------------------------------
+   12. PÁGINA DOS TEMAS
+   ---------------------------------------------------------- */
+
+.pagina-tema {
+    background-color: var(--superficie);
+
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+
+    padding: clamp(24px, 5vw, 52px);
+
+    box-shadow: 0 6px 20px var(--sombra);
+}
+
+
+/*
+   Pergunta principal de cada tema.
+*/
+
+.pergunta {
+    border-left: 6px solid var(--destaque);
+
+    background-color: var(--destaque-claro);
+
+    margin: 22px 0;
+    padding: 18px 22px;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.35rem;
+}
+
+
+/*
+   Lista das reflexões relacionadas.
+*/
+
+.lista-reflexoes {
+    padding-left: 24px;
+}
+
+
+.lista-reflexoes li {
+    margin-bottom: 12px;
+}
+
+
+/* ----------------------------------------------------------
+   13. CITAÇÃO DA REFLEXÃO ALEATÓRIA
+   ---------------------------------------------------------- */
+
+blockquote {
+    max-width: 800px;
+
+    border-left: 6px solid var(--destaque);
+
+    background-color: var(--superficie);
+
+    margin: 28px auto;
+    padding: 24px 28px;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.5rem;
+
+    box-shadow: 0 4px 14px var(--sombra);
+}
+
+
+/*
+   Centraliza a página de reflexão.
+*/
+
+.centro {
+    text-align: center;
+}
+
+
+.centro p {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* ----------------------------------------------------------
+   14. FORMULÁRIOS
+   ---------------------------------------------------------- */
+
+form {
+    max-width: 850px;
+}
+
+
+label,
+legend {
+    font-weight: 700;
+}
+
+
+/*
+   Campo utilizado na busca.
+*/
+
+input[type="search"] {
+    width: 100%;
+
+    border: 2px solid var(--borda);
+    border-radius: 6px;
+
+    background-color: white;
+    color: var(--texto);
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+
+    padding: 11px 14px;
+}
+
+
+input[type="search"]:focus {
+    border-color: var(--principal);
+}
+
+
+/*
+   Coloca campo e botão na mesma linha.
+*/
+
+.linha-formulario {
+    display: flex;
+
+    gap: 12px;
+
+    margin-top: 8px;
+}
+
+
+/* ----------------------------------------------------------
+   15. FORMULÁRIO DE PARTICIPAÇÃO
+   ---------------------------------------------------------- */
+
+.formulario-participacao {
+    margin-top: 28px;
+}
+
+
+fieldset {
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+
+    background-color: var(--superficie);
+
+    padding: 22px;
+}
+
+
+legend {
+    padding: 0 8px;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.2rem;
+}
+
+
+/*
+   Organiza as palavras em duas colunas.
+*/
+
+.opcoes {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 12px;
+
+    margin-top: 12px;
+}
+
+
+/*
+   Cada opção funciona como uma área clicável.
+*/
+
+.opcao {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    background-color: white;
+
+    border: 2px solid var(--borda);
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    padding: 14px;
+
+    transition:
+        border-color 0.2s,
+        background-color 0.2s;
+}
+
+
+.opcao:hover {
+    border-color: var(--principal);
+
+    background-color: var(--destaque-claro);
+}
+
+
+/*
+   Aumenta o botão de seleção.
+*/
+
+.opcao input[type="radio"] {
+    width: 20px;
+    height: 20px;
+
+    accent-color: var(--principal);
+}
+
+
+.opcao:has(input[type="radio"]:checked) {
+    border-color: var(--principal);
+
+    background-color: var(--destaque-claro);
+}
+
+
+.formulario-participacao button {
+    margin-top: 20px;
+}
+
+
+/* ----------------------------------------------------------
+   16. PRIVACIDADE
+   ---------------------------------------------------------- */
+
+.privacidade {
+    max-width: 850px;
+
+    border-left: 5px solid var(--sucesso);
+
+    background-color: var(--sucesso-claro);
+
+    margin-top: 32px;
+    padding: 18px 22px;
+}
+
+
+.privacidade h2 {
+    margin-top: 0;
+
+    font-size: 1.4rem;
+}
+
+
+.privacidade p {
+    margin-bottom: 6px;
+
+    font-size: 0.95rem;
+}
+
+
+/* ----------------------------------------------------------
+   17. RESULTADOS
+   ---------------------------------------------------------- */
+
+.resultados {
+    max-width: 650px;
+
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+
+    margin: 24px 0;
+
+    overflow: hidden;
+
+    box-shadow: 0 4px 14px var(--sombra);
+}
+
+
+/*
+   Cada resultado terá palavra e quantidade.
+*/
+
+.resultado-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background-color: var(--superficie);
+
+    border-bottom: 1px solid var(--borda);
+
+    padding: 14px 18px;
+}
+
+
+/*
+   Remove a borda do último resultado.
+*/
+
+.resultado-item:last-child {
+    border-bottom: none;
+}
+
+
+.resultado-item strong {
+    min-width: 42px;
+
+    border-radius: 20px;
+
+    background-color: var(--principal);
+    color: white;
+
+    padding: 4px 12px;
+
+    text-align: center;
+}
+
+
+/* ----------------------------------------------------------
+   18. BUSCA SEM RESULTADOS
+   ---------------------------------------------------------- */
+
+.sem-resultado {
+    max-width: 800px;
+
+    border-left: 5px solid var(--destaque);
+
+    background-color: var(--superficie);
+
+    margin-top: 30px;
+    padding: 20px 24px;
+}
+
+
+.sem-resultado h2 {
+    margin-top: 0;
+
+    font-size: 1.5rem;
+}
+
+
+/* ----------------------------------------------------------
+   19. MENSAGENS DO PYTHON
+   ---------------------------------------------------------- */
+
+.mensagem {
+    max-width: 100%;
+
+    border-radius: 6px;
+
+    color: white;
+
+    padding: 13px 18px;
+
+    font-weight: 700;
+}
+
+
+/*
+   Mensagem apresentada depois de um registro correto.
+*/
+
+.mensagem.sucesso {
+    background-color: var(--sucesso);
+}
+
+
+/*
+   Mensagem apresentada quando ocorre um problema.
+*/
+
+.mensagem.erro {
+    background-color: var(--erro);
+}
+
+
+/* ----------------------------------------------------------
+   20. RODAPÉ
+   ---------------------------------------------------------- */
+
+footer {
+    background-color: #241d1a;
+    color: white;
+
+    padding: 28px 0;
+}
+
+
+footer p {
+    margin: 4px 0;
+}
+
+
+/* ----------------------------------------------------------
+   21. BOTÃO VOLTAR AO TOPO
+   ---------------------------------------------------------- */
+
+#voltar-topo {
+    display: none;
+
+    position: fixed;
+
+    right: 20px;
+    bottom: 20px;
+
+    width: 48px;
+    height: 48px;
+
+    border-radius: 50%;
+
+    padding: 0;
+
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+
+/*
+   O JavaScript adicionará esta classe quando
+   o visitante rolar a página.
+*/
+
+#voltar-topo.visivel {
+    display: block;
+}
+
+
+/* ----------------------------------------------------------
+   22. ADAPTAÇÃO PARA CELULARES
+   ---------------------------------------------------------- */
+
+/*
+   Estas regras serão aplicadas quando a tela possuir
+   no máximo 720 pixels de largura.
+*/
+
+@media (max-width: 720px) {
+
+    body {
+        font-size: 16px;
+    }
+
+
+    /*
+       Cabeçalho passa a utilizar uma organização vertical.
+    */
+
+    .cabecalho .limite {
+        align-items: stretch;
+        flex-direction: column;
+
+        position: relative;
+    }
+
+
+    /*
+       Mostra o botão que abre o menu.
+    */
+
+    .botao-menu {
+        display: block;
+
+        align-self: flex-end;
+    }
+
+
+    /*
+       O menu começa escondido.
+    */
+
+    nav {
+        display: none;
+        flex-direction: column;
+
+        gap: 10px;
+    }
+
+
+    /*
+       O JavaScript adiciona a classe aberto.
+    */
+
+    nav.aberto {
+        display: flex;
+    }
+
+
+    /*
+       Cartões e opções passam a utilizar uma coluna.
+    */
+
+    .grade,
+    .opcoes {
+        grid-template-columns: 1fr;
+    }
+
+
+    /*
+       Campo e botão passam a ficar um abaixo do outro.
+    */
+
+    .linha-formulario {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+
+    /*
+       Os botões das ações ocupam melhor a tela.
+    */
+
+    .acoes {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+
+    .acoes .botao {
+        width: 100%;
+    }
+
+
+    /*
+       Reduz o espaçamento do conteúdo principal.
+    */
+
+    main {
+        padding-top: 32px;
+    }
+
+
+    .destaque,
+    .pagina-tema {
+        padding: 24px;
+    }
+
+}
+
+
+/* ----------------------------------------------------------
+   23. REDUÇÃO DE MOVIMENTO
+   ---------------------------------------------------------- */
+
+/*
+   Alguns usuários configuram o sistema para evitar
+   animações. Nesse caso, o site respeita a preferência.
+*/
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+
+    *,
+    *::before,
+    *::after {
+        transition: none !important;
+    }
+
+}

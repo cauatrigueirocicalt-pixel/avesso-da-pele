@@ -1,0 +1,163 @@
+<!-- Utiliza a estrutura geral de base.html. -->
+{% extends "base.html" %}
+
+
+<!-- Título da aba do navegador. -->
+{% block titulo %}
+
+    Busca | O Avesso da Pele
+
+{% endblock %}
+
+
+<!-- Início do conteúdo. -->
+{% block conteudo %}
+
+
+<section>
+
+    <p class="etiqueta">
+        Pesquisa no conteúdo
+    </p>
+
+    <h1>
+        Busca
+    </h1>
+
+    <p>
+        Digite uma palavra relacionada aos temas do projeto.
+    </p>
+
+
+    <!-- Formulário de pesquisa. -->
+    <form
+        class="formulario-busca"
+        data-validar-busca
+        action="{{ url_for('buscar') }}"
+        method="get"
+    >
+
+        <label for="termo">
+            Palavra ou assunto
+        </label>
+
+        <div class="linha-formulario">
+
+            <input
+                id="termo"
+                name="termo"
+                type="search"
+                value="{{ termo }}"
+                required
+                minlength="2"
+                placeholder="Exemplo: educação"
+            >
+
+            <button type="submit">
+                Pesquisar
+            </button>
+
+        </div>
+
+    </form>
+
+
+    <!-- Verifica se foi feita uma pesquisa. -->
+    {% if termo %}
+
+
+        <!-- Caso existam resultados. -->
+        {% if resultados %}
+
+            <h2>
+                Resultados para “{{ termo }}”
+            </h2>
+
+            <p>
+                Foram encontrados
+                <strong>
+                    {{ resultados | length }}
+                </strong>
+                resultado ou resultados.
+            </p>
+
+            <div class="grade">
+
+                <!-- Repete um cartão para cada resultado. -->
+                {% for tema in resultados %}
+
+                    <article class="cartao">
+
+                        <h3>
+                            {{ tema.nome }}
+                        </h3>
+
+                        <p>
+                            {{ tema.resumo }}
+                        </p>
+
+                        <a
+                            href="{{ url_for(
+                                'exibir_tema',
+                                id_tema=tema.id_tema
+                            ) }}"
+                        >
+                            Abrir este tema
+                        </a>
+
+                    </article>
+
+                {% endfor %}
+
+            </div>
+
+
+        <!-- Caso não existam resultados. -->
+        {% else %}
+
+            <div class="sem-resultado">
+
+                <h2>
+                    Nenhum resultado encontrado
+                </h2>
+
+                <p>
+                    Não encontramos conteúdo relacionado a
+                    “{{ termo }}”.
+                </p>
+
+                <p>
+                    Tente palavras como:
+                </p>
+
+                <ul>
+                    <li>memória;</li>
+                    <li>identidade;</li>
+                    <li>racismo;</li>
+                    <li>educação;</li>
+                    <li>tecnologia;</li>
+                    <li>professor.</li>
+                </ul>
+
+            </div>
+
+        {% endif %}
+
+    {% endif %}
+
+
+    <div class="acoes">
+
+        <a
+            class="botao secundario"
+            href="{{ url_for('inicio') }}"
+        >
+            Voltar ao início
+        </a>
+
+    </div>
+
+</section>
+
+
+{% endblock %}

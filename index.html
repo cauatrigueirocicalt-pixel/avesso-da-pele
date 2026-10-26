@@ -1,0 +1,203 @@
+<!-- Utiliza a estrutura de base.html. -->
+{% extends "base.html" %}
+
+
+<!-- Define o título da aba do navegador. -->
+{% block titulo %}
+
+    Início | O Avesso da Pele
+
+{% endblock %}
+
+
+<!-- Início do conteúdo desta página. -->
+{% block conteudo %}
+
+
+<!-- ===================================================== -->
+<!-- DESTAQUE INICIAL                                      -->
+<!-- ===================================================== -->
+
+<section class="destaque">
+
+    <p class="etiqueta">
+        Literatura e tecnologia
+    </p>
+
+    <h1>
+        Além da superfície
+    </h1>
+
+    <p class="subtitulo">
+        Uma experiência sobre memória, identidade,
+        racismo estrutural, educação e
+        responsabilidade tecnológica.
+    </p>
+
+    <div class="acoes">
+
+        <a
+            class="botao"
+            href="#temas"
+        >
+            Explorar temas
+        </a>
+
+        <a
+            class="botao secundario"
+            href="{{ url_for('participar') }}"
+        >
+            Deixar uma palavra
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ===================================================== -->
+<!-- APRESENTAÇÃO DA OBRA                                  -->
+<!-- ===================================================== -->
+
+<section id="obra">
+
+    <h2>
+        Sobre a obra
+    </h2>
+
+    <p>
+        Em <em>O Avesso da Pele</em>, de Jeferson Tenório,
+        Pedro reconstrói a trajetória do pai, Henrique,
+        depois de sua morte. A narrativa reúne memória
+        familiar, identidade, educação, relações raciais
+        e violência, mostrando a complexidade de uma vida
+        para além dos rótulos impostos pela sociedade.
+    </p>
+
+</section>
+
+
+<!-- ===================================================== -->
+<!-- TEMAS VINDOS DO BANCO                                 -->
+<!-- ===================================================== -->
+
+<section id="temas">
+
+    <h2>
+        Temas para explorar
+    </h2>
+
+    <p>
+        Escolha um tema para conhecer sua relação
+        com a obra e com a tecnologia.
+    </p>
+
+    <div class="grade">
+
+        <!-- O Python envia a lista chamada temas. -->
+        <!-- O for repete um cartão para cada registro. -->
+        {% for tema in temas %}
+
+            <article class="cartao">
+
+                <h3>
+                    {{ tema.nome }}
+                </h3>
+
+                <p>
+                    {{ tema.resumo }}
+                </p>
+
+                <a
+                    href="{{ url_for(
+                        'exibir_tema',
+                        id_tema=tema.id_tema
+                    ) }}"
+                >
+                    Conhecer este tema
+                </a>
+
+            </article>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+
+<!-- ===================================================== -->
+<!-- FORMULÁRIO DE BUSCA                                   -->
+<!-- ===================================================== -->
+
+<section>
+
+    <h2>
+        Pesquise no projeto
+    </h2>
+
+    <p>
+        Procure uma palavra presente nos temas cadastrados.
+    </p>
+
+    <form
+        class="formulario-busca"
+        data-validar-busca
+        action="{{ url_for('buscar') }}"
+        method="get"
+    >
+
+        <label for="termo">
+            Digite uma palavra ou assunto
+        </label>
+
+        <div class="linha-formulario">
+
+            <input
+                id="termo"
+                name="termo"
+                type="search"
+                required
+                minlength="2"
+                placeholder="Exemplo: memória"
+            >
+
+            <button type="submit">
+                Pesquisar
+            </button>
+
+        </div>
+
+    </form>
+
+</section>
+
+
+<!-- ===================================================== -->
+<!-- EXPLICAÇÃO TÉCNICA                                    -->
+<!-- ===================================================== -->
+
+<section>
+
+    <h2>
+        Como a tecnologia aparece
+    </h2>
+
+    <p>
+        O HTML organiza aquilo que o visitante vê.
+        O JavaScript ajuda nas interações e validações.
+        O Python recebe os pedidos e aplica as regras.
+        O banco SQLite armazena temas, reflexões e
+        participações.
+    </p>
+
+    <p>
+        Essas tecnologias possuem responsabilidades
+        diferentes, mas trabalham juntas na mesma
+        aplicação.
+    </p>
+
+</section>
+
+
+{% endblock %}

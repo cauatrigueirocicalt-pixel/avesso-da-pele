@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+    <!-- Define os caracteres utilizados pela página. -->
+    <meta charset="UTF-8">
+
+    <!-- Faz a página se adaptar a celulares e tablets. -->
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <!-- Descrição utilizada por navegadores e buscadores. -->
+    <meta
+        name="description"
+        content="Projeto interdisciplinar sobre O Avesso da Pele."
+    >
+
+    <!-- Cada página poderá substituir este título. -->
+    <title>
+        {% block titulo %}
+            O Avesso da Pele
+        {% endblock %}
+    </title>
+
+    <!-- Liga o HTML ao arquivo CSS. -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/estilo.css') }}"
+    >
+
+    <!-- Liga o HTML ao JavaScript. -->
+    <!-- defer manda o navegador carregar primeiro o HTML. -->
+    <script
+        src="{{ url_for('static', filename='js/script.js') }}"
+        defer
+    ></script>
+</head>
+
+<body>
+
+    <!-- ================================================== -->
+    <!-- CABEÇALHO -->
+    <!-- ================================================== -->
+
+    <header class="cabecalho">
+
+        <div class="limite">
+
+            <!-- Marca do projeto. -->
+            <a
+                class="marca"
+                href="{{ url_for('inicio') }}"
+            >
+                O Avesso da Pele
+            </a>
+
+            <!-- Botão que aparecerá em telas pequenas. -->
+            <button
+                class="botao-menu"
+                type="button"
+                aria-expanded="false"
+                aria-controls="menu-principal"
+                aria-label="Abrir menu"
+            >
+                Menu
+            </button>
+
+            <!-- Menu principal. -->
+            <nav
+                id="menu-principal"
+                aria-label="Navegação principal"
+            >
+                <a href="{{ url_for('inicio') }}">
+                    Início
+                </a>
+
+                <a href="{{ url_for('reflexao_aleatoria') }}">
+                    Reflexão
+                </a>
+
+                <a href="{{ url_for('participar') }}">
+                    Participe
+                </a>
+
+                <a href="{{ url_for('resultados') }}">
+                    Resultados
+                </a>
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================================================== -->
+    <!-- CONTEÚDO PRINCIPAL -->
+    <!-- ================================================== -->
+
+    <main class="limite">
+
+        <!-- Mostra mensagens enviadas pelo Python. -->
+        {% with mensagens = get_flashed_messages(
+            with_categories=true
+        ) %}
+
+            {% for categoria, mensagem in mensagens %}
+
+                <p
+                    class="mensagem {{ categoria }}"
+                    role="status"
+                >
+                    {{ mensagem }}
+                </p>
+
+            {% endfor %}
+
+        {% endwith %}
+
+
+        <!-- Cada página colocará seu conteúdo neste espaço. -->
+        {% block conteudo %}
+
+        {% endblock %}
+
+    </main>
+
+
+    <!-- ================================================== -->
+    <!-- RODAPÉ -->
+    <!-- ================================================== -->
+
+    <footer>
+
+        <div class="limite">
+
+            <p>
+                Projeto interdisciplinar do 2º ano de Informática
+            </p>
+
+            <p>
+                Literatura, HTML, Python, Banco de Dados
+                e participação social
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- Botão controlado pelo JavaScript. -->
+    <button
+        id="voltar-topo"
+        type="button"
+        aria-label="Voltar ao topo"
+    >
+        ↑
+    </button>
+
+</body>
+
+</html>
